@@ -25,3 +25,5 @@ A simple web app to track your daily expenses, view totals, and see your top spe
 -> Delete any expense by clicking the ❌ button
 
 -> Totals and top category update automatically
+
+[live demo]( https://jeetmakani51.github.io/Expense-Tracker/)
