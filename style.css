@@ -12,11 +12,15 @@ html {
   background-color: #f5f7fa;
 }
 .container {
-  height: 100vh;
-  width: auto;
-  background: var(--background);
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  padding: 16px;
   display: flex;
   flex-direction: column;
+  gap: 16px;
+
+  box-sizing: border-box;
 }
 
 .Total-Expenses {
@@ -221,4 +225,17 @@ button {
 
 .delete-btn:hover {
   transform: scale(1.2);
+}
+
+.icon2 i {
+  font-size: 15px;
+}
+
+.icon3 i {
+  font-size: 15px;
+  margin-left: -5px;
+}
+
+.icon3 i {
+  margin-left: -9px;
 }
