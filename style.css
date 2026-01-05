@@ -1,0 +1,224 @@
+:root {
+  --total: linear-gradient(135deg, #8b5cf6, #a78bfa);
+  --Month: linear-gradient(135deg, #10b981, #34d399);
+  --category: linear-gradient(135deg, #f97316, #fdba74);
+  --background: #f7f7fb;
+  --text: #f9fafb;
+  --secondary-text: #6b7280;
+}
+
+body,
+html {
+  background-color: #f5f7fa;
+}
+.container {
+  height: 100vh;
+  width: auto;
+  background: var(--background);
+  display: flex;
+  flex-direction: column;
+}
+
+.Total-Expenses {
+  background: var(--total);
+  height: 25%;
+  width: 100%;
+  display: flex;
+  border-radius: 20px;
+}
+
+.icon {
+  margin: 40px;
+  color: var(--text);
+  font-size: 2em;
+}
+
+.Month-Category {
+  height: 25%;
+  width: 100%;
+  display: flex;
+}
+
+.Spent-This-Month {
+  width: 50%;
+  background: var(--Month);
+  border-radius: 20px;
+  margin: 5px;
+}
+
+.Top-Category {
+  width: 50%;
+  background: var(--category);
+  border-radius: 20px;
+  margin: 5px;
+}
+
+@media screen and (max-width: 320px) {
+  .icon {
+    font-size: 1.5em;
+  }
+}
+
+.icon2 {
+  width: 100%;
+  margin: 20px;
+  color: var(--text);
+  font-size: 1.5em;
+}
+
+.icon2 span {
+  font-size: 1rem;
+}
+
+.icon3 {
+  width: 100%;
+  margin: 20px;
+  color: var(--text);
+  font-size: 1.5em;
+}
+
+.icon3 span {
+  font-size: 1rem;
+}
+
+.icon3 i {
+  font-size: 19px;
+}
+
+.form {
+  background-color: #f5f7fa;
+  max-width: 420px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  margin-top: 30px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.form input,
+.form select {
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.form input:focus,
+.form select:focus {
+  outline: none;
+  border-color: #4f46e5;
+}
+
+.form label,
+.form input,
+.form select {
+  display: block;
+}
+
+button {
+  background: var(--total);
+  color: var(--text);
+  width: 80%;
+  border-radius: 7px;
+}
+
+.history {
+  height: 100px;
+  width: 100%;
+  background-color: #f9fafb;
+  display: flex;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.history h2 {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  color: var(--secondary-text);
+}
+
+.history-item {
+  background: #ffffff;
+  padding: 16px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.history-item > h2 {
+  font-size: 16px;
+  color: #444;
+  margin-bottom: 12px;
+}
+
+/* Main expense row */
+.history-details {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Description */
+.history-details h2 {
+  grid-column: 1 / 4;
+  font-size: 18px;
+  margin: 0;
+  color: #222;
+}
+
+/* Category pill */
+.category-item {
+  background: #e3f2fd;
+  color: #1976d2;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  width: fit-content;
+}
+
+/* Amount */
+.amount-item {
+  font-size: 18px;
+  font-weight: bold;
+  color: #e53935;
+  justify-self: end;
+}
+
+/* Date */
+.history-details h3 {
+  grid-column: 1 / 4;
+  font-size: 13px;
+  color: #777;
+  margin: 0;
+}
+
+#expense-list {
+  width: 90%;
+}
+
+#expense-list {
+  width: 100%;
+}
+
+.Top-Category h3 {
+  font-size: 16px;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #e53935;
+}
+
+.delete-btn:hover {
+  transform: scale(1.2);
+}
