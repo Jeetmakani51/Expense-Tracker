@@ -1,7 +1,8 @@
 {
   "name": "Expensio",
   "short_name": "Expensio",
-  "start_url": "/",
+  "start_url": "https://github.com/Jeetmakani51/Expense-Tracker",
+  "scope": "https://github.com/Jeetmakani51/Expense-Tracker",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#4CAF50",
