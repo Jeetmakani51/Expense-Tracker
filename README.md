@@ -26,4 +26,4 @@ A simple web app to track your daily expenses, view totals, and see your top spe
 
 -> Totals and top category update automatically
 
-[live demo]( https://jeetmakani51.github.io/Expense-Tracker/)
+[live demo](https://jeetmakani51.github.io/Expense-Tracker/)
