@@ -34,11 +34,15 @@ function addExpenseToHistory({ id, description, amount, category, date }) {
 
   expenseDiv.innerHTML = `
     <div class="history-details">
-      <h2>${description}</h2>
-      <div class="category-item">${category}</div>
-      <div class="amount-item">₹${amount}</div>
-      <h3>${date}</h3>
-      <button class="delete-btn" title="Delete">❌</button>
+        <div class="description-item"><h2>${description}</h2></div>
+        <div class="amount-item">₹${amount}</div>
+        <div class="meta-info">
+          <span class="category-item">${category}</span>
+          <span class="date-item"><h3>${date}</h3></span>
+        </div>
+        <div class="delete-btn">
+        <i class="fa-solid fa-trash-can"></i>
+        </div>
     </div>
   `;
 
@@ -149,22 +153,6 @@ form.addEventListener("submit", function (e) {
 
   form.reset();
 });
-
-/* =========================
-   DELETE EXPENSE
-========================= */
-
-/* =========================
-   DELETE EXPENSE
-========================= */
-
-/* =========================
-   DELETE EXPENSE
-========================= */
-
-/* =========================
-   DELETE EXPENSE
-========================= */
 
 /* =========================
    DELETE EXPENSE
