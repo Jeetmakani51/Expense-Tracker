@@ -38,10 +38,13 @@
         <input
           type="number"
           name=""
-          id="Spendinglimit"
+          id="spending-limit"
           placeholder="Set Spending Limit"
         />
-        <button><p>Set</p></button>
+        <button id="set-limit-btn"><p>Set</p></button>
+        <div id="limit-alert" style="display: none">
+          ⚠️ Warning: You've exceeded your spending limit!
+        </div>
       </div>
       <div class="form" id="expense-form">
         <form>
@@ -67,7 +70,9 @@
           </select>
           <label for="Date">Date</label>
           <input type="date" name="date" id="date" />
-          <button type="submit">+ Add Expense</button>
+          <button type="submit" id="AddExpense" class="Add-Expense">
+            + Add Expense
+          </button>
         </form>
       </div>
       <div class="history">

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 * {
   margin: 0;
@@ -17,10 +17,10 @@
 
 body {
   background-color: #f5f7fa;
-  font-family: "Inter",sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
-body::-webkit-scrollbar{
+body::-webkit-scrollbar {
   display: none;
 }
 
@@ -84,7 +84,8 @@ body::-webkit-scrollbar{
   .Total-Expenses {
     font-size: 1.5em;
   }
-  .Spent-This-Month,.Top-Category{
+  .Spent-This-Month,
+  .Top-Category {
     font-size: 0.8em;
   }
 }
@@ -150,7 +151,6 @@ body::-webkit-scrollbar{
   display: flex;
   flex-direction: column;
   gap: 12px;
-
 }
 
 .history-item {
@@ -240,5 +240,29 @@ body::-webkit-scrollbar{
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
+  }
+}
+
+#limit-alert {
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+  color: #991b1b;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 15px;
+  border-left: 4px solid #dc2626;
+  font-weight: 600;
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  75% {
+    transform: translateX(10px);
   }
 }

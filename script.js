@@ -184,3 +184,56 @@ expenseList.addEventListener("click", function (e) {
   // Rebuild entire UI
   rebuildUI();
 });
+
+/* =========================
+   SPENDING LIMIT FEATURE
+========================= */
+document.addEventListener("DOMContentLoaded", function () {
+  // Put ALL your spending limit code here
+  let spendingLimit = Number(localStorage.getItem("spendingLimit")) || 0;
+
+  const setLimitBtn = document.getElementById("set-limit-btn");
+  const limitInput = document.getElementById("spending-limit");
+  const limitAlert = document.getElementById("limit-alert");
+
+  setLimitBtn.addEventListener("click", function () {
+    const limit = Number(limitInput.value);
+
+    if (!limit || limit <= 0) {
+      alert("Please enter a valid spending limit!");
+      return;
+    }
+
+    spendingLimit = limit;
+    localStorage.setItem("spendingLimit", spendingLimit);
+
+    alert(`Spending limit set to ₹${spendingLimit}`);
+    limitInput.value = "";
+
+    // Check if already over limit
+    checkSpendingLimit();
+  });
+
+  // Check if spending exceeds limit
+  function checkSpendingLimit() {
+    if (spendingLimit > 0 && totalExpense >= spendingLimit) {
+      limitAlert.style.display = "block";
+      limitAlert.style.backgroundColor = "#fee2e2";
+      limitAlert.style.color = "#991b1b";
+      limitAlert.style.padding = "10px";
+      limitAlert.style.borderRadius = "5px";
+      limitAlert.style.marginTop = "10px";
+      limitAlert.innerHTML = `⚠️ Warning: You've spent ₹${totalExpense} out of ₹${spendingLimit} limit!`;
+    } else {
+      limitAlert.style.display = "none";
+    }
+  }
+
+  // Load saved limit on page load
+  if (spendingLimit > 0) {
+    limitInput.placeholder = `Current Limit: ₹${spendingLimit}`;
+    checkSpendingLimit();
+  }
+
+  // Rest of your code...
+});
