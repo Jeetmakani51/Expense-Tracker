@@ -8,6 +8,8 @@ let totalExpense = 0;
 let monthlyExpense = 0;
 const categoryTotals = {};
 
+let spendingLimit = Number(localStorage.getItem("spendingLimit")) || 0;
+
 /* =========================
    DOM ELEMENTS
 ========================= */
@@ -19,6 +21,11 @@ const noExpense = document.getElementById("no-expenses");
 const totalExpenseEl = document.getElementById("total-expense");
 const monthlyExpenseEl = document.getElementById("monthly-expense");
 const topCategoryEl = document.getElementById("top-category");
+
+// ✅ ADD SPENDING LIMIT DOM ELEMENTS
+const setLimitBtn = document.getElementById("set-limit-btn");
+const limitInput = document.getElementById("spending-limit");
+const limitAlert = document.getElementById("limit-alert");
 
 /* =========================
    HELPER FUNCTIONS
@@ -82,6 +89,8 @@ function updateStats({ amount, category, date }) {
   }
 
   topCategoryEl.innerText = topCat;
+
+  // ✅ CHECK SPENDING LIMIT
   checkSpendingLimit();
 }
 
@@ -97,6 +106,26 @@ function resetStats() {
   totalExpenseEl.innerText = "₹0";
   monthlyExpenseEl.innerText = "₹0";
   topCategoryEl.innerText = "No Data";
+
+  // ✅ HIDE ALERT WHEN RESET
+  if (limitAlert) {
+    limitAlert.style.display = "none";
+  }
+}
+
+// ✅ CHECK SPENDING LIMIT FUNCTION (GLOBAL SCOPE)
+function checkSpendingLimit() {
+  if (spendingLimit > 0 && totalExpense >= spendingLimit) {
+    limitAlert.style.display = "block";
+    limitAlert.style.backgroundColor = "#fee2e2";
+    limitAlert.style.color = "#991b1b";
+    limitAlert.style.padding = "10px";
+    limitAlert.style.borderRadius = "5px";
+    limitAlert.style.marginTop = "10px";
+    limitAlert.innerHTML = `⚠️ Warning: You've spent ₹${totalExpense} out of ₹${spendingLimit} limit!`;
+  } else {
+    limitAlert.style.display = "none";
+  }
 }
 
 // Rebuild entire UI from expenses array
@@ -120,6 +149,12 @@ function rebuildUI() {
 ========================= */
 
 rebuildUI();
+
+// ✅ LOAD SAVED LIMIT ON PAGE LOAD
+if (spendingLimit > 0) {
+  limitInput.placeholder = `Current Limit: ₹${spendingLimit}`;
+  checkSpendingLimit();
+}
 
 /* =========================
    ADD EXPENSE
@@ -160,21 +195,13 @@ form.addEventListener("submit", function (e) {
 ========================= */
 
 expenseList.addEventListener("click", function (e) {
-  console.log("Clicked element:", e.target);
-
   const deleteBtn = e.target.closest(".delete-btn");
-  console.log("Delete button:", deleteBtn);
-
   if (!deleteBtn) return;
 
   const expenseItem = deleteBtn.closest(".history-item");
-  console.log("Expense item:", expenseItem);
-  console.log("Dataset:", expenseItem?.dataset);
-
   if (!expenseItem) return;
 
   const expenseId = Number(expenseItem.dataset.id);
-  console.log("Deleting expense ID:", expenseId);
 
   // Remove from array
   expenses = expenses.filter((exp) => exp.id !== expenseId);
@@ -189,52 +216,22 @@ expenseList.addEventListener("click", function (e) {
 /* =========================
    SPENDING LIMIT FEATURE
 ========================= */
-document.addEventListener("DOMContentLoaded", function () {
-  // Put ALL your spending limit code here
-  let spendingLimit = Number(localStorage.getItem("spendingLimit")) || 0;
 
-  const setLimitBtn = document.getElementById("set-limit-btn");
-  const limitInput = document.getElementById("spending-limit");
-  const limitAlert = document.getElementById("limit-alert");
+setLimitBtn.addEventListener("click", function () {
+  const limit = Number(limitInput.value);
 
-  setLimitBtn.addEventListener("click", function () {
-    const limit = Number(limitInput.value);
-
-    if (!limit || limit <= 0) {
-      alert("Please enter a valid spending limit!");
-      return;
-    }
-
-    spendingLimit = limit;
-    localStorage.setItem("spendingLimit", spendingLimit);
-
-    alert(`Spending limit set to ₹${spendingLimit}`);
-    limitInput.value = "";
-
-    // Check if already over limit
-    checkSpendingLimit();
-  });
-
-  // Check if spending exceeds limit
-  function checkSpendingLimit() {
-    if (spendingLimit > 0 && totalExpense >= spendingLimit) {
-      limitAlert.style.display = "block";
-      limitAlert.style.backgroundColor = "#fee2e2";
-      limitAlert.style.color = "#991b1b";
-      limitAlert.style.padding = "10px";
-      limitAlert.style.borderRadius = "5px";
-      limitAlert.style.marginTop = "10px";
-      limitAlert.innerHTML = `⚠️ Warning: You've spent ₹${totalExpense} out of ₹${spendingLimit} limit!`;
-    } else {
-      limitAlert.style.display = "none";
-    }
+  if (!limit || limit <= 0) {
+    alert("Please enter a valid spending limit!");
+    return;
   }
 
-  // Load saved limit on page load
-  if (spendingLimit > 0) {
-    limitInput.placeholder = `Current Limit: ₹${spendingLimit}`;
-    checkSpendingLimit();
-  }
+  spendingLimit = limit;
+  localStorage.setItem("spendingLimit", spendingLimit);
 
-  // Rest of your code...
+  alert(`Spending limit set to ₹${spendingLimit}`);
+  limitInput.value = "";
+  limitInput.placeholder = `Current Limit: ₹${spendingLimit}`;
+
+  // Check if already over limit
+  checkSpendingLimit();
 });
