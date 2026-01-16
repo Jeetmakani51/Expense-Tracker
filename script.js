@@ -82,6 +82,7 @@ function updateStats({ amount, category, date }) {
   }
 
   topCategoryEl.innerText = topCat;
+  checkSpendingLimit();
 }
 
 // Reset all stats
